@@ -9,9 +9,9 @@ from . import nets
 try:
     import boltzgen as bg
 
-    from simtk import openmm as mm
+    import openmm as mm
     from simtk import unit
-    from simtk.openmm import app
+    from openmm import app
     from openmmtools import testsystems
     import mdtraj
 except:
@@ -101,7 +101,7 @@ class Glow(nf.MultiscaleFlow):
         for i in range(L):
             flows_ = []
             for j in range(K):
-                flows_ += [nf.flows.GlowBlock(channels * 2 ** (L + 1 - i), hidden_channels,
+                flows_ += [nf.flows.GlowBlock2d(channels * 2 ** (L + 1 - i), hidden_channels,
                                               split_mode=split_mode, scale=scale,
                                               use_lu=use_lu, net_actnorm=net_actnorm)]
             flows_ += [nf.flows.Squeeze()]
